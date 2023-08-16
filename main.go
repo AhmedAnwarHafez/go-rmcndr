@@ -1,14 +1,31 @@
 package main
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"fmt"
+	"log"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/template/html/v2"
+)
 
 func main() {
-	app := fiber.New()
+	
+	// Create a new engine
+	engine := html.New("./views", ".html")
 
-	app.Static("/", "./public")
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World 👋!")
+	// Pass the engine to the Views
+	app := fiber.New(fiber.Config{
+		Views: engine,
 	})
 
-	app.Listen(":3000")
+	app.Static("/public", "./public")
+
+	app.Get("/", func(c *fiber.Ctx) error {
+		// Render index
+		return c.Render("index", fiber.Map{
+			"Title": "Hello, World!",
+		}, "layouts/main")
+	})
+
+	log.Fatal(app.Listen(":3000"))
 }
