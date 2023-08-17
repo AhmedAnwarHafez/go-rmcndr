@@ -1,4 +1,4 @@
-package auth
+package utils
 
 import (
 	"encoding/json"
@@ -6,6 +6,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/oauth2"
+	"golang.org/x/oauth2/github"
 )
 
 type GitHubUser struct {
