@@ -1,12 +1,13 @@
 package main
 
 import (
-	"log"
-
+	"bytes"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html/v2"
 	"github.com/joho/godotenv"
 	"go-rcmndr/routes"
+	"html/template"
+	"log"
 )
 
 func main() {
@@ -17,6 +18,16 @@ func main() {
 
 	// Create a new engine
 	engine := html.New("./views", ".html")
+
+	engine.AddFunc("textbox", func(class string, placeholder template.HTML) template.HTML {
+		var buf bytes.Buffer
+		engine.Templates.ExecuteTemplate(&buf, "textbox", map[string]interface{}{
+			"Class":       class,
+			"Placeholder": placeholder,
+		})
+		log.Println(buf.String())
+		return template.HTML(buf.String())
+	})
 
 	// Pass the engine to the Views
 	app := fiber.New(fiber.Config{
