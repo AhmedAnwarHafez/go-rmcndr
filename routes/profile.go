@@ -15,7 +15,7 @@ func Profile(c *fiber.Ctx) error {
 	userID := sess.Get("user_id")
 	if userID == nil {
 		// user not logged in
-		return c.Redirect("/auth/github/login")
+		return c.Redirect("/login")
 	}
 
 	return c.Render("profile", fiber.Map{
