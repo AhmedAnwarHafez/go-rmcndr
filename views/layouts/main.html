@@ -1,11 +1,29 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>Main</title>
-    <link rel="stylesheet" href="/public/output.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>{{ .Title }}</title>
+    <link rel="stylesheet" href="public/output.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js"
+      integrity="sha512-rpLlll167T5LJHwp0waJCh3ZRf7pO6IT1+LZOhAyP6phAirwchClbTZV3iqL3BMrVxIYRbzGTpli4rfxsCK6Vw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      defer
+    ></script>
+    <script
+      src="https://unpkg.com/htmx.org@1.9.4"
+      integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
   </head>
-
-  <body class="bg-purple-500">
-    sddfs {{embed}}
+  <body class="bg-darkPurple min-h-screen text-white">
+    <nav class="fixed top-0 bg-darkPurple w-full">
+      <header />
+    </nav>
+    <div class="pt-12 pl-4 pr-4">{{ embed }}</div>
   </body>
 </html>
