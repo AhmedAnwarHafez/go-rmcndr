@@ -4,7 +4,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// protected rout
 func Profile(c *fiber.Ctx) error {
 	// read user_id from session
 	sess, err := store.Get(c)
