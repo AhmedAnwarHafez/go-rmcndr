@@ -1,37 +1,39 @@
-<div class="flex flex-col gap-4">
-  <h1 class="font-bold text-2xl">Edit your profile</h1>
-  <form class="flex flex-col gap-4">
-    <div>
-      <label for="Nickname">Nickname</label>
-      <input
-        type="text"
-        class="p-2 bg-[#301453] text-white border focus:shadow-[0px_0px_9px_2px_#B07CF2] border-transparent placeholder-[#B07CF2] focus:outline-none block w-full rounded-md sm:text-sm"
-        autocomplete="off"
-        value="{{ .Nickname }}"
-      />
-    </div>
-    <div class="flex items-center">
-      <input
-        checked
-        id="isPublic"
-        name="isPublic"
-        type="checkbox"
-        value=""
-        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-      />
-      <label
-        for="isPublic"
-        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-        >Checked state</label
-      >
-    </div>
-    <div class="flex justify-center justify-items-center">
-      <button
-        type="button"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-      >
-        Save
-      </button>
-    </div>
-  </form>
+<div class="flex flex-col justify-center items-center min-h-screen">
+  <div class="flex flex-col justify-start gap-6">
+    <h1 class="font-bold">Edit your profile</h1>
+    <form class="flex flex-col gap-4">
+      <div>
+        <label for="Nickname">Nickname</label>
+        <input
+          type="text"
+          class="p-2 bg-[#301453] text-white border focus:shadow-[0px_0px_9px_2px_#B07CF2] border-transparent placeholder-[#B07CF2] focus:outline-none block w-full rounded-md sm:text-sm"
+          autocomplete="off"
+          value="{{ .Nickname }}"
+        />
+      </div>
+      <div class="flex items-center">
+        <input
+          checked
+          id="isPublic"
+          name="isPublic"
+          type="checkbox"
+          value=""
+          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <label
+          for="isPublic"
+          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          >Visible to public</label
+        >
+      </div>
+      <div class="flex justify-center">
+        <button
+          type="button"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
