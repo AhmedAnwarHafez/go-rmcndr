@@ -11,11 +11,11 @@ import (
 
 // Define Redis connection configuration
 var redisConfig = redis.Config{
-	Host:     "192.168.20.244", // Redis server IP and
-	Port:     6379,             // Redis server port
-	Username: "",               // Redis username (if applicable)
-	Password: "",               // Redis password (if applicable)
-	Database: 0,                // Redis database number
+	Host:     "192.168.1.184", // Redis server IP and
+	Port:     6379,            // Redis server port
+	Username: "",              // Redis username (if applicable)
+	Password: "",              // Redis password (if applicable)
+	Database: 0,               // Redis database number
 }
 
 // session store
