@@ -27,6 +27,7 @@ type User struct {
 	ID       int64  `json:"id"`
 	Nickname string `json:"nickname"`
 	IsPublic bool   `json:"is_public"`
+	Songs    []Song `json:"songs"`
 }
 
 var ctx = context.Background()
@@ -46,12 +47,25 @@ func main() {
 	f := faker.NewWithSeed(seed)
 
 	for i := 0; i < 100; i++ {
+
+		song := Song{
+			ID:      int64(i),
+			Title:   f.Lorem().Word(),
+			Artist:  f.Music().Author(),
+			Genre:   f.Music().Genre(),
+			Link:    f.Internet().URL(),
+			Comment: f.Lorem().Sentence(10),
+		}
+
 		// create user
 		user := User{
 			ID:       int64(i),
 			Nickname: f.Person().FirstNameFemale(),
 			IsPublic: false,
+			Songs:    []Song{song},
 		}
+
+		fmt.Printf("%+v\n", song)
 
 		j, err := json.Marshal(user)
 		if err != nil {
@@ -62,6 +76,5 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-
 	}
 }
