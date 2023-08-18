@@ -39,9 +39,10 @@ func GetAuthCallback(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
-	defer sess.Save()
-
 	sess.Set("user_id", user.ID)
+	if err := sess.Save(); err != nil {
+		return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
+	}
 	return c.Redirect("/profile")
 }
 
@@ -50,9 +51,10 @@ func Logout(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
-	defer sess.Save()
 
-	sess.Destroy()
+	if err := sess.Destroy(); err != nil {
+		return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
+	}
 	return c.Redirect("/")
 }
 

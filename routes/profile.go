@@ -2,9 +2,11 @@ package routes
 
 import (
 	"encoding/json"
-	"github.com/gofiber/fiber/v2"
 	"go-rcmndr/db"
 	"log"
+	"strconv"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 type ProfileData struct {
@@ -26,7 +28,8 @@ func Profile(c *fiber.Ctx) error {
 		return c.SendString("user not logged in")
 	}
 
-	val, err := db.GetProfileById("7552088")
+	key := strconv.Itoa(userId)
+	val, err := db.GetProfileById(key)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
@@ -41,7 +44,6 @@ func Profile(c *fiber.Ctx) error {
 
 	return c.Render("profile", fiber.Map{
 		"Title":    "rcmndr - Profile",
-		"UserId":   userId,
 		"Nickname": profileData.Nickname,
 	}, "layouts/main")
 }
