@@ -4,9 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log"
+
 	"github.com/jaswdr/faker"
-	"go-rcmndr/db"
+	"github.com/joho/godotenv"
 	mathrand "math/rand"
+	"os"
+
+	"github.com/redis/go-redis/v9"
 )
 
 type Song struct {
@@ -27,8 +32,16 @@ type User struct {
 var ctx = context.Background()
 
 func main() {
-	// connect to redis
-	rdb := db.Connection
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	rdb := redis.NewClient(&redis.Options{
+		Addr:     os.Getenv("REDIS_URL"),
+		Password: "", // no password set
+		DB:       0,  // use default DB
+	})
 	seed := mathrand.NewSource(123)
 	f := faker.NewWithSeed(seed)
 
