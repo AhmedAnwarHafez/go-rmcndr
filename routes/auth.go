@@ -1,19 +1,32 @@
 package routes
 
 import (
-	"log"
+	"go-rcmndr/routes/utils"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/session"
-	"go-rcmndr/routes/utils"
+	"github.com/gofiber/storage/redis"
 	"golang.org/x/oauth2"
 )
 
+// Define Redis connection configuration
+var redisConfig = redis.Config{
+	Host:     "192.168.20.244", // Redis server IP and
+	Port:     6379,             // Redis server port
+	Username: "",               // Redis username (if applicable)
+	Password: "",               // Redis password (if applicable)
+	Database: 0,                // Redis database number
+}
+
 // session store
-var store = session.New()
+var store = session.New(
+	session.Config{
+		Storage: redis.New(redisConfig),
+	})
 
 func GetAuthCallback(c *fiber.Ctx) error {
 	code := c.Query("code")
+	//
 	config := utils.GetConfig()
 	token, err := config.Exchange(c.Context(), code)
 
@@ -28,9 +41,7 @@ func GetAuthCallback(c *fiber.Ctx) error {
 	}
 	defer sess.Save()
 
-	log.Println(user.Login)
-
-	sess.Set("user_id", user.Login)
+	sess.Set("user_id", user.ID)
 	return c.Redirect("/profile")
 }
 
