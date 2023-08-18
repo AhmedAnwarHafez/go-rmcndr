@@ -14,6 +14,7 @@ var Connection = redis.NewClient(&redis.Options{
 	DB:       0,  // use default DB
 })
 
-func GetProfileById(key string) (string, error) {
+func GetProfileById(id string) (string, error) {
+	key := "user:" + id
 	return Connection.Get(ctx, key).Result()
 }

@@ -37,15 +37,17 @@ func main() {
 	app.Static("/public", "./public")
 
 	app.Get("/", func(c *fiber.Ctx) error {
-		// Render index
-		return c.Render("index", fiber.Map{
-			"Title": "rcmndr",
-		}, "layouts/main")
+
+		return routes.Index(c)
+		// return c.Render("index", fiber.Map{
+		// 	"Title": "rcmndr",
+		// }, "layouts/main")
 	})
 
 	app.Get("/login", routes.Login)
 	app.Get("/logout", routes.Logout)
 	app.Get("/auth/github/callback", routes.GetAuthCallback)
+	app.Get("/profile", routes.Profile)
 	app.Get("/profile", routes.Profile)
 
 	log.Fatal(app.Listen(":3000"))
