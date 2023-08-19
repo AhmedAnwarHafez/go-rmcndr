@@ -1,8 +1,6 @@
-package routes
+package main
 
 import (
-	"go-rcmndr/routes/utils"
-
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/session"
 	"github.com/gofiber/storage/redis"
@@ -27,10 +25,10 @@ var store = session.New(
 func GetAuthCallback(c *fiber.Ctx) error {
 	code := c.Query("code")
 	//
-	config := utils.GetConfig()
+	config := GetConfig()
 	token, err := config.Exchange(c.Context(), code)
 
-	user, err := utils.GetUserInfo(token, c, config)
+	user, err := GetUserInfo(token, c, config)
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).SendString(err.Error())
 	}
@@ -59,7 +57,7 @@ func Logout(c *fiber.Ctx) error {
 }
 
 func Login(c *fiber.Ctx) error {
-	config := utils.GetConfig()
+	config := GetConfig()
 	authURL := config.AuthCodeURL("", oauth2.AccessTypeOffline)
 	return c.Redirect(authURL)
 }

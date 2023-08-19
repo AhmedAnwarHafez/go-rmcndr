@@ -1,8 +1,7 @@
-package routes
+package main
 
 import (
 	"encoding/json"
-	"go-rcmndr/db"
 	"log"
 	"strconv"
 
@@ -29,7 +28,7 @@ func Profile(c *fiber.Ctx) error {
 	}
 
 	key := strconv.Itoa(userId)
-	val, err := db.GetProfileById(key)
+	val, err := GetProfileById(key)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}

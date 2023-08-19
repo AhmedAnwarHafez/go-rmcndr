@@ -1,8 +1,7 @@
-package routes
+package main
 
 import (
 	"fmt"
-	"go-rcmndr/db"
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
@@ -20,7 +19,7 @@ func Index(c *fiber.Ctx) error {
 		return c.Redirect("/login")
 	}
 
-	profile, err := db.GetProfileById(strconv.Itoa(userId))
+	profile, err := GetProfileById(strconv.Itoa(userId))
 	if err != nil {
 		return c.SendString("error")
 	}

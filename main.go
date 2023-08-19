@@ -5,7 +5,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html/v2"
 	"github.com/joho/godotenv"
-	"go-rcmndr/routes"
 	"html/template"
 	"log"
 )
@@ -38,17 +37,17 @@ func main() {
 
 	app.Get("/", func(c *fiber.Ctx) error {
 
-		return routes.Index(c)
+		return Index(c)
 		// return c.Render("index", fiber.Map{
 		// 	"Title": "rcmndr",
 		// }, "layouts/main")
 	})
 
-	app.Get("/login", routes.Login)
-	app.Get("/logout", routes.Logout)
-	app.Get("/auth/github/callback", routes.GetAuthCallback)
-	app.Get("/profile", routes.Profile)
-	app.Get("/profile", routes.Profile)
+	app.Get("/login", Login)
+	app.Get("/logout", Logout)
+	app.Get("/auth/github/callback", GetAuthCallback)
+	app.Get("/profile", Profile)
+	app.Get("/profile", Profile)
 
 	log.Fatal(app.Listen(":3000"))
 }
