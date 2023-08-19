@@ -36,8 +36,6 @@ func Profile(c *fiber.Ctx) error {
 	var profileData ProfileData
 	err = json.Unmarshal([]byte(val), &profileData)
 	if err != nil {
-		log.Println("error unmarshalling profile data")
-		log.Println(err)
 		return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
 
