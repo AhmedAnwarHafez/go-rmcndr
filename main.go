@@ -43,11 +43,10 @@ func main() {
 		// }, "layouts/main")
 	})
 
-	app.Get("/login", Login)
-	app.Get("/logout", Logout)
-	app.Get("/auth/github/callback", GetAuthCallback)
-	app.Get("/profile", Profile)
-	app.Get("/profile", Profile)
+	app.Get("/login", LoginHandler)
+	app.Get("/logout", LogoutHandler)
+	app.Get("/auth/github/callback", GetAuthCallbackHanlder)
+	app.Get("/profile", ProfileHandler)
 
 	log.Fatal(app.Listen(":3000"))
 }

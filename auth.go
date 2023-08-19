@@ -22,7 +22,7 @@ var store = session.New(
 		Storage: redis.New(redisConfig),
 	})
 
-func GetAuthCallback(c *fiber.Ctx) error {
+func GetAuthCallbackHanlder(c *fiber.Ctx) error {
 	code := c.Query("code")
 	//
 	config := GetConfig()
@@ -44,7 +44,7 @@ func GetAuthCallback(c *fiber.Ctx) error {
 	return c.Redirect("/profile")
 }
 
-func Logout(c *fiber.Ctx) error {
+func LogoutHandler(c *fiber.Ctx) error {
 	sess, err := store.Get(c)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
@@ -56,7 +56,7 @@ func Logout(c *fiber.Ctx) error {
 	return c.Redirect("/")
 }
 
-func Login(c *fiber.Ctx) error {
+func LoginHandler(c *fiber.Ctx) error {
 	config := GetConfig()
 	authURL := config.AuthCodeURL("", oauth2.AccessTypeOffline)
 	return c.Redirect(authURL)

@@ -14,7 +14,7 @@ type ProfileData struct {
 	Public   bool
 }
 
-func Profile(c *fiber.Ctx) error {
+func ProfileHandler(c *fiber.Ctx) error {
 	// read user_id from session
 	sess, err := store.Get(c)
 	if err != nil {
