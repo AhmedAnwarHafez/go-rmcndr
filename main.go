@@ -47,6 +47,7 @@ func main() {
 	app.Get("/logout", LogoutHandler)
 	app.Get("/auth/github/callback", GetAuthCallbackHanlder)
 	app.Get("/profile", ProfileHandler)
+	app.Get("/", HomeHandler)
 
 	log.Fatal(app.Listen(":3000"))
 }
