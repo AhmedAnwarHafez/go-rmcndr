@@ -2,11 +2,12 @@ package main
 
 import (
 	"bytes"
+	"html/template"
+	"log"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html/v2"
 	"github.com/joho/godotenv"
-	"html/template"
-	"log"
 )
 
 func main() {
@@ -48,12 +49,14 @@ func main() {
 	app.Get("/auth/github/callback", GetAuthCallbackHanlder)
 	app.Get("/profile", ProfileHandler)
 	app.Get("/", HomeHandler)
+
 	app.Get("/search", func(c *fiber.Ctx) error {
 
 		q := c.Query("q", "default")
 
 		// means that htmx triggered this request
 		if c.Get("Hx-Trigger-Name") == "q" {
+
 			return c.Render("search-result", fiber.Map{
 				"Title": "rcmndr",
 				"Query": q,
