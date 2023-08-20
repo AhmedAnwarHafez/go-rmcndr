@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
