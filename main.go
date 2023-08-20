@@ -48,6 +48,12 @@ func main() {
 	app.Get("/auth/github/callback", GetAuthCallbackHanlder)
 	app.Get("/profile", ProfileHandler)
 	app.Get("/", HomeHandler)
+	app.Get("/search", func(c *fiber.Ctx) error {
+
+		return c.Render("search", fiber.Map{
+			"Title": "rcmndr",
+		}, "layouts/main")
+	})
 
 	log.Fatal(app.Listen(":3000"))
 }
