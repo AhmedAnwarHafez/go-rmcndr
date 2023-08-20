@@ -1,0 +1,25 @@
+<h1>Search</h1>
+
+<form action="/search" method="get">
+  <input
+    type="search"
+    name="q"
+    value="{{ .Query }}"
+    class="text-black"
+    hx-get="/search?q={{ .Query }}"
+    hx-target="#search-results"
+    hx-trigger="change, keyup delay:200ms changed"
+  />
+  <button type="submit">Search</button>
+</form>
+
+<div id="search-results">
+  {{ if .Results }}
+  <h2>Results</h2>
+  <ul>
+    {{ range .Results }}
+    <li><a href="/view/{{ .Title }}">{{ .Title }}</a></li>
+    {{ end }}
+  </ul>
+  {{ end }}
+</div>
