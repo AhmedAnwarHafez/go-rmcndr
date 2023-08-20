@@ -1,25 +1,58 @@
-<h1>Search</h1>
+<div id="page" class="flex flex-col gap-10">
+  <form action="/search" method="get">
+    <input
+      type="search"
+      name="q"
+      value="{{ .Query }}"
+      class="text-black rounded"
+      hx-get="/search?q={{ .Query }}"
+      hx-target="#search-results"
+      hx-trigger="change, keyup delay:200ms changed"
+      autocomplete="off"
+    />
+    <button type="submit"><i class="fa fa-search"></i></button>
+  </form>
 
-<form action="/search" method="get">
-  <input
-    type="search"
-    name="q"
-    value="{{ .Query }}"
-    class="text-black"
-    hx-get="/search?q={{ .Query }}"
-    hx-target="#search-results"
-    hx-trigger="change, keyup delay:200ms changed"
-  />
-  <button type="submit">Search</button>
-</form>
-
-<div id="search-results">
-  {{ if .Results }}
-  <h2>Results</h2>
-  <ul>
-    {{ range .Results }}
-    <li><a href="/view/{{ .Title }}">{{ .Title }}</a></li>
-    {{ end }}
-  </ul>
-  {{ end }}
+  <div id="search-results">
+    <h2>Results</h2>
+    <div>
+      <ul class="flex flex-col gap-4">
+        <li
+          class="flex gap-2 items-center border border-purple-900 rounded p-2"
+        >
+          <div class="flex flex-col gap-1.5">
+            <p>
+              <span class="bg-fuchsia-600 p-1 px-2 rounded-full text-xs"
+                >59</span
+              >
+              LongNickName
+            </p>
+            <div class="flex gap-2 items-center">
+              <span class="rounded bg-purple-700 p-1 text-sm">Metal</span>
+              <span class="rounded bg-purple-700 p-1 text-sm">Trance</span>
+              <span class="rounded bg-purple-700 p-1 text-sm">Country</span>
+              <span class="text-sm align-middle text-purple-200">5 more</span>
+            </div>
+          </div>
+        </li>
+        <li
+          class="flex gap-2 items-center border border-purple-900 rounded p-2"
+        >
+          <div class="flex flex-col gap-1.5">
+            <p>
+              <span class="bg-fuchsia-600 p-1 px-2 text-xs rounded-full"
+                >4</span
+              >
+              LongNickName
+            </p>
+            <div class="flex gap-2">
+              <span class="rounded bg-purple-700 p-1 text-sm">Metal</span
+              ><span class="rounded bg-purple-700 p-1 text-sm">Trance</span
+              ><span class="rounded bg-purple-700 p-1 text-sm">Country</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
