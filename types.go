@@ -10,8 +10,7 @@ type Song struct {
 }
 
 type User struct {
-	ID       int64  `json:"id"`
-	Nickname string `json:"nickname"`
-	IsPublic bool   `json:"is_public"`
-	Songs    []Song `json:"songs"`
+	ID       string
+	Nickname string
+	IsPublic bool
 }

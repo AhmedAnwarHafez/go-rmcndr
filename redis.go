@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 
 	"github.com/redis/go-redis/v9"
 )
@@ -16,21 +15,18 @@ var Connection = redis.NewClient(&redis.Options{
 })
 
 func GetProfileById(id string) (User, error) {
-	key := "user:" + id
+	key := "users:" + id
 
-	val, err := Connection.Get(ctx, key).Result()
+	val, err := Connection.HGetAll(ctx, key).Result()
 	if err != nil {
 		return User{}, err
 	}
 
-	var u User
-	err = json.Unmarshal([]byte(val), &u)
+	u := User{
+		ID:       key,
+		Nickname: val["nickname"],
+		IsPublic: val["is_public"] == "true",
+	}
 
 	return u, err
-}
-
-func GetSongs(id string) ([]Song, error) {
-	profile, err := GetProfileById(id)
-
-	return profile.Songs, err
 }
