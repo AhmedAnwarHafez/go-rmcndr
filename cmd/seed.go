@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"log"
-
-	"context"
+	"database/sql"
 	"github.com/jaswdr/faker"
 	"github.com/joho/godotenv"
+	_ "github.com/mattn/go-sqlite3"
+	"log"
 )
 
 type Song struct {
@@ -26,32 +25,44 @@ type User struct {
 }
 
 func main() {
-
+	// create a new table called recommendations
+	// with the following columns:
+	// id, title, artist, genre, url
+	// and insert some data
+	// then select all data from the table
+	// and print it to the console
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
 
-	// seed := mathrand.NewSource(123)
-	// f := faker.NewWithSeed(seed)
+	db, err := sql.Open("sqlite3", "./db.sqlite3")
+	if err != nil {
+		log.Fatal(err)
+	}
 
-}
+	// create table
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS recommendations (id INTEGER PRIMARY KEY, title TEXT, artist TEXT, genre TEXT, url TEXT, comment TEXT)")
+	if err != nil {
+		log.Fatal(err)
+	}
 
-func followUser(ctx context.Context, userA string, userB string) error {
-	return nil
-}
+	// create a new faker instance
+	fake := faker.New()
 
-func insertUsers(ctx context.Context, f faker.Faker) {
-	for i := int64(0); i < 100; i++ {
+	// create a new recommendation
+	recommendation := Song{
+		Title:   fake.Person().Name(),
+		Artist:  fake.Person().Name(),
+		Genre:   fake.Music().Genre(),
+		Link:    fake.Person().Name(),
+		Comment: fake.Person().Name(),
+	}
 
-		// create user
-		user := User{
-			ID:       int64(i),
-			Nickname: f.Person().FirstNameFemale(),
-			IsPublic: false,
-		}
+	// insert the recommendation into the database
+	_, err = db.Exec("INSERT INTO recommendations (title, artist, genre, url, comment) VALUES (?, ?, ?, ?, ?)", recommendation.Title, recommendation.Artist, recommendation.Genre, recommendation.Link, recommendation.Comment)
 
-		key := fmt.Sprintf("users:%d", user.ID)
-		fmt.Println(key)
+	if err != nil {
+		log.Fatal(err)
 	}
 }
