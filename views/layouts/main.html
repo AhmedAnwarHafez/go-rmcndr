@@ -26,11 +26,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
     <link rel="manifest" href="site.webmanifest" />
   </head>
-  <body class="bg-darkPurple min-h-screen text-white p-4">
-    <nav class="fixed top-0 bg-darkPurple w-full">
-      <header />
-    </nav>
-    <div class="pt-12 pl-4 pr-4">{{ embed }}</div>
+  <body class="bg-darkPurple h-screen text-white flex flex-col px-2">
+    <header class="">{{template "nav"}}</header>
+    <main class="grow overflow-auto">
+      <div class="pr-4">{{ embed }}</div>
+    </main>
     <div class="flex items-stretch justify-center">
       <a href="/add-recommendation">
         <div class="flex flex-col p-1 items-center">
