@@ -25,3 +25,6 @@ make dev #tailwind and the webserver should both start in parallel
       For example, [3 Trance] [4 Ambient] [5 Dance] and 3 more
 
 - [ ] When the user adds a new song and selects a genre, a Typeahead will be displayed to select an existing genre.
+- [ ] Handle authentication
+- [ ] add more tables
+- [ ] Add friends
