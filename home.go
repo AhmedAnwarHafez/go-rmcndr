@@ -46,7 +46,7 @@ func HomeHandler(c *fiber.Ctx) error {
 		})
 	}
 
-	return c.Render("recommendations", fiber.Map{
+	return c.Render("list-recommendations", fiber.Map{
 		"Title":           "Home - rcmndr",
 		"Recommendations": recommendations,
 	}, "layouts/main")

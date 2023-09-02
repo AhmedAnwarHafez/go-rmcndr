@@ -40,6 +40,7 @@ func main() {
 	app.Get("/logout", LogoutHandler)
 	app.Get("/auth/github/callback", GetAuthCallbackHanlder)
 	app.Get("/profile", ProfileHandler)
+	app.Get("/add-recommendation", GetAddRecommendation)
 	app.Get("/", HomeHandler)
 
 	app.Get("/search", func(c *fiber.Ctx) error {
