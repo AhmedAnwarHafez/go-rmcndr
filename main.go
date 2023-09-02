@@ -41,6 +41,7 @@ func main() {
 	app.Get("/auth/github/callback", GetAuthCallbackHanlder)
 	app.Get("/profile", ProfileHandler)
 	app.Get("/add-recommendation", GetAddRecommendation)
+	app.Post("/add-recommendation", PostAddRecommendation)
 	app.Get("/", HomeHandler)
 
 	app.Get("/search", func(c *fiber.Ctx) error {
