@@ -30,11 +30,11 @@ func HomeHandler(c *fiber.Ctx) error {
 		var genre string
 		var url string
 		var comment string
+
 		err = rows.Scan(&id, &title, &artist, &genre, &url, &comment)
 		if err != nil {
 			log.Fatal(err)
 		}
-		log.Println(id, title, artist, genre, url, comment)
 
 		recommendations = append(recommendations, Song{
 			Id:      id,
