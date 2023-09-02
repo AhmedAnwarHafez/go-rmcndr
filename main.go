@@ -36,14 +36,6 @@ func main() {
 
 	app.Static("/public", "./public")
 
-	app.Get("/", func(c *fiber.Ctx) error {
-
-		return Index(c)
-		// return c.Render("index", fiber.Map{
-		// 	"Title": "rcmndr",
-		// }, "layouts/main")
-	})
-
 	app.Get("/login", LoginHandler)
 	app.Get("/logout", LogoutHandler)
 	app.Get("/auth/github/callback", GetAuthCallbackHanlder)
