@@ -1,0 +1,12 @@
+<h1>My recommendations</h1>
+
+<ul>
+  {{range .Recommendations}}
+  <li>
+    <p>{{.Title}}</p>
+    <p>{{.Artist}}</p>
+    <p>{{.Link}}</p>
+    <p>{{.Comment}}</p>
+  </li>
+  {{end}}
+</ul>
