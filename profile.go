@@ -1,8 +1,6 @@
 package main
 
 import (
-	"strconv"
-
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -19,18 +17,8 @@ func ProfileHandler(c *fiber.Ctx) error {
 		return c.SendString("user not logged in")
 	}
 
-	key := strconv.Itoa(userId)
-	u, err := GetProfileById(key)
-	if err != nil {
-		return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
-	}
-
-	if err != nil {
-		return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
-	}
-
 	return c.Render("profile", fiber.Map{
 		"Title":    "rcmndr - Profile",
-		"Nickname": u.Nickname,
+		"Nickname": userId,
 	}, "layouts/main")
 }
