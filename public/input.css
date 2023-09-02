@@ -7,6 +7,10 @@
     @apply p-2 bg-[#301453] text-white border focus:shadow-[0px_0px_7px_1px_#B07CF2] border-transparent placeholder-[#B07CF2] focus:outline-none block w-full rounded-md sm:text-sm;
   }
 
+  textarea {
+    @apply p-2 bg-[#301453] text-white border focus:shadow-[0px_0px_7px_1px_#B07CF2] border-transparent placeholder-[#B07CF2] focus:outline-none block w-full rounded-md sm:text-sm;
+  }
+
   .btn-primary {
     @apply bg-fuchsia-600 text-white px-4 py-2 rounded-md;
   }
