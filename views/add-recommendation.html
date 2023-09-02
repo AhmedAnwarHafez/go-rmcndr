@@ -8,7 +8,7 @@
         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >Title</label
       >
-      <input type="text" id="title" placeholder="Title" />
+      <input type="text" id="title" name="title" placeholder="Title" />
     </div>
     <div class="mb-6">
       <label
@@ -16,11 +16,11 @@
         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >Artist</label
       >
-      <input type="text" id="artist" placeholder="Artist" />
+      <input type="text" id="artist" name="artist" placeholder="Artist" />
     </div>
     <div class="mb-6">
       <label for="genre">Genre</label>
-      <input type="text" id="genre" placeholder="Genre" />
+      <input type="text" id="genre" name="genre" placeholder="Genre" />
     </div>
     <div class="mb-6">
       <label for="link">Link</label>
@@ -28,7 +28,12 @@
     </div>
     <div class="mb-6">
       <label for="comment">Comment</label>
-      <textarea id="comment" rows="3" placeholder="Comment"></textarea>
+      <textarea
+        id="comment"
+        rows="3"
+        name="comment"
+        placeholder="Comment"
+      ></textarea>
     </div>
 
     <div class="flex justify-center">
