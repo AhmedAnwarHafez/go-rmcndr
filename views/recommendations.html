@@ -1,12 +1,20 @@
-<h1>My recommendations</h1>
+<div class="flex flex-col gap-6">
+  <h1>My recommendations</h1>
 
-<ul>
-  {{range .Recommendations}}
-  <li>
-    <p>{{.Title}}</p>
-    <p>{{.Artist}}</p>
-    <p>{{.Link}}</p>
-    <p>{{.Comment}}</p>
-  </li>
-  {{end}}
-</ul>
+  <ul class="flex flex-col gap-2">
+    {{range .Recommendations}}
+    <li class="p-4 border border-1 border-purple-900 rounded text-xs">
+      <div>
+        <div class="flex items-center gap-2">
+          <p class="text-sm">{{.Title}}</p>
+          <i class="fa-solid fa-up-right-from-square"></i>
+        </div>
+        <p class="text-lightPurple">{{.Artist}}</p>
+      </div>
+      <p class="mt-2 text-gray-200 border-l border-lightPurple pl-2">
+        {{.Comment}}
+      </p>
+    </li>
+    {{end}}
+  </ul>
+</div>
