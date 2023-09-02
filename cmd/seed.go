@@ -6,6 +6,7 @@ import (
 	"github.com/joho/godotenv"
 	_ "github.com/mattn/go-sqlite3"
 	"log"
+	rand "math/rand"
 )
 
 type Song struct {
@@ -47,20 +48,29 @@ func main() {
 		log.Fatal(err)
 	}
 
+	// delete all recommendations
+	_, err = db.Exec("DELETE FROM recommendations")
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	// create a new faker instance
 	fake := faker.New()
 
-	// create a new recommendation
-	recommendation := Song{
-		Title:   fake.Person().Name(),
-		Artist:  fake.Person().Name(),
-		Genre:   fake.Music().Genre(),
-		Link:    fake.Person().Name(),
-		Comment: fake.Person().Name(),
-	}
+	for i := 0; i < 10; i++ {
 
-	// insert the recommendation into the database
-	_, err = db.Exec("INSERT INTO recommendations (title, artist, genre, url, comment) VALUES (?, ?, ?, ?, ?)", recommendation.Title, recommendation.Artist, recommendation.Genre, recommendation.Link, recommendation.Comment)
+		// create a new recommendation
+		recommendation := Song{
+			Title:   fake.Music().Name(),
+			Artist:  fake.Person().Name(),
+			Genre:   fake.Music().Genre(),
+			Link:    fake.Internet().URL(),
+			Comment: fake.Lorem().Sentence(rand.Intn(30) + 10),
+		}
+
+		// insert the recommendation into the database
+		_, err = db.Exec("INSERT INTO recommendations (title, artist, genre, url, comment) VALUES (?, ?, ?, ?, ?)", recommendation.Title, recommendation.Artist, recommendation.Genre, recommendation.Link, recommendation.Comment)
+	}
 
 	if err != nil {
 		log.Fatal(err)
