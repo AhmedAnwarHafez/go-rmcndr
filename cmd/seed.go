@@ -19,7 +19,7 @@ type Song struct {
 }
 
 type User struct {
-	ID       int64
+	Id       int64
 	Nickname string
 	IsPublic bool
 	Songs    []Song
@@ -76,6 +76,19 @@ func main() {
 		_, err = db.Exec("INSERT INTO recommendations (title, artist, genre, url, comment) VALUES (?, ?, ?, ?, ?)", recommendation.Title, recommendation.Artist, recommendation.Genre, recommendation.Link, recommendation.Comment)
 	}
 
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+
+	var me = User{
+		Id:       7552088,
+		Nickname: "me",
+		IsPublic: true,
+	}
+
+	// insert user into the database
+	_, err = db.Exec("INSERT INTO users (id, nickname, is_public) VALUES (?, ?, ?)", me.Id, me.Nickname, me.IsPublic)
 	if err != nil {
 		log.Fatal(err)
 		return
