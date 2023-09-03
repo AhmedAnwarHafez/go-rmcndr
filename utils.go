@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"log"
 	"os"
 
 	"github.com/gofiber/fiber/v2"
@@ -46,4 +47,11 @@ func GetConfig() oauth2.Config {
 	}
 
 	return oauth2Config
+}
+
+func handleError(err error) {
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 }
