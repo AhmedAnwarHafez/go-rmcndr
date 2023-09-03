@@ -42,26 +42,8 @@ func main() {
 	app.Get("/profile", ProfileHandler)
 	app.Get("/add-recommendation", GetAddRecommendation)
 	app.Post("/add-recommendation", PostAddRecommendation)
+	app.Get("/search", GetSearchHandler)
 	app.Get("/", GetSongsHandler)
-
-	app.Get("/search", func(c *fiber.Ctx) error {
-
-		q := c.Query("q", "default")
-
-		// means that htmx triggered this request
-		if c.Get("Hx-Trigger-Name") == "q" {
-
-			return c.Render("search-result", fiber.Map{
-				"Title": "rcmndr",
-				"Query": q,
-			}, "layouts/main")
-		}
-
-		return c.Render("search", fiber.Map{
-			"Title": "rcmndr",
-			"Query": q,
-		}, "layouts/main")
-	})
 
 	log.Fatal(app.Listen(":3000"))
 }
