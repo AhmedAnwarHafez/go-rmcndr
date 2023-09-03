@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -32,8 +31,6 @@ func GetSearchHandler(c *fiber.Ctx) error {
 
 		users = append(users, user)
 	}
-
-	fmt.Println(users)
 
 	q := c.Query("q", "default")
 
