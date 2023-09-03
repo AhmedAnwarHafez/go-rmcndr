@@ -11,7 +11,7 @@ type Song struct {
 }
 
 type User struct {
-	ID       string
+	Id       string
 	Nickname string
 	IsPublic bool
 	Songs    []Song
