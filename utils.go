@@ -48,10 +48,3 @@ func GetConfig() oauth2.Config {
 
 	return oauth2Config
 }
-
-func handleError(err error) {
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
-}
