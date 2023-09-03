@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"log"
 	"os"
 
 	"github.com/gofiber/fiber/v2"
