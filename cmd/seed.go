@@ -35,23 +35,27 @@ func main() {
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
+		return
 	}
 
 	db, err := sql.Open("sqlite3", "./db.sqlite3")
 	if err != nil {
 		log.Fatal(err)
+		return
 	}
 
 	// create table
 	_, err = db.Exec("CREATE TABLE IF NOT EXISTS recommendations (id INTEGER PRIMARY KEY, title TEXT, artist TEXT, genre TEXT, url TEXT, comment TEXT)")
 	if err != nil {
 		log.Fatal(err)
+		return
 	}
 
 	// delete all recommendations
 	_, err = db.Exec("DELETE FROM recommendations")
 	if err != nil {
 		log.Fatal(err)
+		return
 	}
 
 	// create a new faker instance
@@ -74,5 +78,6 @@ func main() {
 
 	if err != nil {
 		log.Fatal(err)
+		return
 	}
 }

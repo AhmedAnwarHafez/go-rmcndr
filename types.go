@@ -2,6 +2,7 @@ package main
 
 type Song struct {
 	Id      int64  `json:"id"`
+	UserID  int64  `json:"user_id"`
 	Title   string `json:"title"`
 	Artist  string `json:"artist"`
 	Genre   string `json:"genre"`
@@ -13,4 +14,5 @@ type User struct {
 	ID       string
 	Nickname string
 	IsPublic bool
+	Songs    []Song
 }
