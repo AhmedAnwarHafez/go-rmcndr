@@ -89,12 +89,12 @@ func main() {
 		return
 	}
 
-	// create a new faker instance
-	fake := faker.New()
+	// create a new faker instance with seed 123
+	fake := faker.NewWithSeed(rand.NewSource(123))
 
 	var userIds []int64
 	// insert 10 users into the database
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 100; i++ {
 		// create a new user
 		u := User{
 			Nickname: fake.Person().Name(),
@@ -136,7 +136,7 @@ func main() {
 		genreIds = append(genreIds, id)
 	}
 
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 300; i++ {
 		// create a new r
 		r := Recommendation{
 			UserId:  userIds[rand.Intn(len(userIds))],
