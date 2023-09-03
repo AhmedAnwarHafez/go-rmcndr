@@ -42,7 +42,7 @@ func main() {
 	app.Get("/profile", ProfileHandler)
 	app.Get("/add-recommendation", GetAddRecommendation)
 	app.Post("/add-recommendation", PostAddRecommendation)
-	app.Get("/", HomeHandler)
+	app.Get("/", GetSongsHandler)
 
 	app.Get("/search", func(c *fiber.Ctx) error {
 

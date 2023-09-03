@@ -2,12 +2,24 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"github.com/gofiber/fiber/v2"
 	_ "github.com/mattn/go-sqlite3"
 	"log"
 )
 
-func HomeHandler(c *fiber.Ctx) error {
+func GetSongsHandler(c *fiber.Ctx) error {
+	sess, err := store.Get(c)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
+	}
+
+	sessionUser := sess.Get("user_id")
+	if sessionUser == nil {
+		return c.Redirect("/login")
+	}
+
+	fmt.Println(sessionUser)
 	db, err := sql.Open("sqlite3", "./db.sqlite3")
 	if err != nil {
 		log.Fatal(err)
