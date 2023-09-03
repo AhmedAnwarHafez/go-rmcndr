@@ -27,12 +27,20 @@ func GetSongsHandler(c *fiber.Ctx) error {
 	defer db.Close()
 
 	// select all
-	rows, err := db.Query("SELECT * FROM recommendations")
+	rows, err := db.Query("SELECT id, title, artist, genre, url, comment FROM recommendations WHERE user_id = ?", sessionUser)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	var recommendations []Song
+
+	if rows.Next() == false {
+		log.Println("No recommendations found")
+		return c.Render("list-recommendations", fiber.Map{
+			"Title":           "Nothing - rcmndr",
+			"Recommendations": recommendations,
+		}, "layouts/main")
+	}
 
 	// iterate over rows
 	for rows.Next() {
