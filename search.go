@@ -8,7 +8,6 @@ import (
 
 func GetSearchHandler(c *fiber.Ctx) error {
 
-	// query all users
 	db, err := sql.Open("sqlite3", "./db.sqlite3")
 	if err != nil {
 		return err
@@ -18,10 +17,7 @@ func GetSearchHandler(c *fiber.Ctx) error {
 		return err
 	}
 
-	// create a slice of users
 	users := []User{}
-
-	// iterate over each row
 	for rows.Next() {
 		var user User
 		err = rows.Scan(&user.Id, &user.Nickname, &user.IsPublic)
