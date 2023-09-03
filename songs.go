@@ -27,7 +27,7 @@ func GetSongsHandler(c *fiber.Ctx) error {
 	defer db.Close()
 
 	// select all
-	rows, err := db.Query("SELECT id, title, artist, genre, url, comment FROM recommendations WHERE user_id = ?", sessionUser)
+	rows, err := db.Query("SELECT id, title, artist, genre_id, url, comment FROM recommendations WHERE user_id = ?", sessionUser)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -47,11 +47,11 @@ func GetSongsHandler(c *fiber.Ctx) error {
 		var id int64
 		var title string
 		var artist string
-		var genre string
+		var genreId int64
 		var url string
 		var comment string
 
-		err = rows.Scan(&id, &title, &artist, &genre, &url, &comment)
+		err = rows.Scan(&id, &title, &artist, &genreId, &url, &comment)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -60,7 +60,7 @@ func GetSongsHandler(c *fiber.Ctx) error {
 			Id:      id,
 			Title:   title,
 			Artist:  artist,
-			Genre:   genre,
+			GenreId: genreId,
 			Link:    url,
 			Comment: comment,
 		})

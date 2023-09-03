@@ -2,10 +2,10 @@ package main
 
 type Song struct {
 	Id      int64  `json:"id"`
-	UserID  int64  `json:"user_id"`
+	UserId  int64  `json:"user_id"`
 	Title   string `json:"title"`
 	Artist  string `json:"artist"`
-	Genre   string `json:"genre"`
+	GenreId int64  `json:"genre"`
 	Link    string `json:"link"`
 	Comment string `json:"comment"`
 }
