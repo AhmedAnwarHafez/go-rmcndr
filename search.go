@@ -24,7 +24,7 @@ func GetSearchHandler(c *fiber.Ctx) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println("q", q)
+
 	rows, err := db.Query(`SELECT u.nickname as Nickname, u.is_public as IsPublic, g.name as GenreName, COUNT(r.id) AS GenereCount
 FROM recommendations r
 JOIN users u ON r.user_id = u.id
@@ -100,7 +100,7 @@ GROUP BY g.id`, currentUserId)
 
 	for i, user := range usersMap {
 		val := CosineSimilarity(myGenres, user.Genres)
-		usersMap[i].Similarity = fmt.Sprintf("%.1f", val)
+		usersMap[i].Similarity = fmt.Sprintf("%.1f", val*100) + "%"
 	}
 
 	return c.Render("search-result", fiber.Map{

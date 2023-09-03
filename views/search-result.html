@@ -3,14 +3,14 @@
   <li
     class="flex gap-2 justify-between items-center border border-purple-900 rounded p-2"
   >
-    <div class="flex gap-1.5 justify-around items-center">
-      <p class="text-sm">
-        {{ .Similarity }}
-        <a href="/user/{{ .Id }}">{{ .Nickname }}</a>
-      </p>
-      <div class="flex flex-wrap gap-2 items-center">
+    <div class="flex flex-col gap-1.5 justify-around items-center">
+      <div>
+        <a href="/user/{{ .Nickname }}">{{ .Nickname }}</a>
+        <p class="text-[.5rem]">{{ .Similarity }}</p>
+      </div>
+      <div class="flex flex-wrap gap-2 justify-center items-center">
         {{range .Genres}}
-        <div class="flex gap-1 rounded bg-purple-700 p-1 text-xs">
+        <div class="flex gap-1 rounded bg-purple-700 p-1 text-[.5rem]">
           <p
             class="bg-fuchsia-600 text-purple-100 place-self-center px-2 rounded-full"
           >
@@ -21,9 +21,10 @@
         </div>
         {{end}}
       </div>
+      <div class="w-9 h-9 rounded-full bg-primary">
+        <i class="fa fa-heart text-black align-middle text-center"></i>
+      </div>
     </div>
-
-    <p class="text-xs">100%</p>
   </li>
   {{end}}
 </ul>
