@@ -173,6 +173,27 @@ func main() {
 		log.Fatal(err)
 		return
 	}
+
+	for i := 0; i < 20; i++ {
+		// create a new r
+		r := Recommendation{
+			UserId:  me.Id,
+			GenreId: genreIds[rand.Intn(len(genreIds))],
+			Title:   fake.Music().Name(),
+			Artist:  fake.Person().Name(),
+			Link:    fake.Internet().URL(),
+			Comment: fake.Lorem().Sentence(rand.Intn(30) + 10),
+		}
+
+		// insert the recommendation into the database
+		_, err = db.Exec("INSERT INTO recommendations (user_id, genre_id, title, artist, url, comment) VALUES (?, ?, ?, ?, ?, ?)", r.UserId, r.GenreId, r.Title, r.Artist, r.Link, r.Comment)
+
+		if err != nil {
+			log.Fatal(err)
+			return
+		}
+	}
+
 }
 
 func GetGenres() []string {
