@@ -16,3 +16,8 @@ type User struct {
 	IsPublic bool
 	Songs    []Song
 }
+
+type GenreSummary struct {
+	GenreName string
+	Count     int64
+}

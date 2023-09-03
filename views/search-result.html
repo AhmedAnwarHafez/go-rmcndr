@@ -1,1 +1,29 @@
-<div>hello</div>
+<ul id="results" class="flex flex-col gap-4">
+  {{range .Users}}
+  <li
+    class="flex gap-2 justify-between items-center border border-purple-900 rounded p-2"
+  >
+    <div class="flex gap-1.5 justify-around items-center">
+      <p class="text-sm">
+        {{ .Similarity }}
+        <a href="/user/{{ .Id }}">{{ .Nickname }}</a>
+      </p>
+      <div class="flex flex-wrap gap-2 items-center">
+        {{range .Genres}}
+        <div class="flex gap-1 rounded bg-purple-700 p-1 text-xs">
+          <p
+            class="bg-fuchsia-600 text-purple-100 place-self-center px-2 rounded-full"
+          >
+            {{ .Count }}
+          </p>
+
+          <p class="text-purple-100">{{ .GenreName }}</p>
+        </div>
+        {{end}}
+      </div>
+    </div>
+
+    <p class="text-xs">100%</p>
+  </li>
+  {{end}}
+</ul>
