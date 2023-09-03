@@ -17,6 +17,7 @@
     <h2>Results</h2>
     <div>
       <ul class="flex flex-col gap-4">
+        {{range .Users}}
         <li
           class="flex gap-2 items-center border border-purple-900 rounded p-2"
         >
@@ -25,7 +26,7 @@
               <span class="bg-fuchsia-600 p-1 px-2 rounded-full text-xs"
                 >59</span
               >
-              LongNickName
+              <a href="/user/{{ .Id }}">{{ .Nickname }}</a>
             </p>
             <div class="flex gap-2 items-center">
               <span class="rounded bg-purple-700 p-1 text-sm">Metal</span>
@@ -35,6 +36,7 @@
             </div>
           </div>
         </li>
+        {{end}}
         <li
           class="flex gap-2 items-center border border-purple-900 rounded p-2"
         >
