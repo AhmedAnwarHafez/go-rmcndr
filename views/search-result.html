@@ -3,28 +3,30 @@
   <li
     class="flex gap-2 justify-between items-center border border-purple-900 p-2"
   >
-    <div class="flex flex-col gap-1.5 justify-around items-center">
+    <div class="flex flex-col gap-1.5 justify-around items-center w-full">
       <div>
-        <a href="/user/{{ .Nickname }}">{{ .Nickname }}</a>
+        <a href="/user/{{ .Nickname }}" class="font-bold">{{ .Nickname }}</a>
       </div>
       <div class="flex flex-wrap gap-2 justify-center items-center">
         {{range .Genres}}
-        <div class="flex gap-1 rounded bg-purple-700 p-1 text-[.5rem]">
+        <div
+          class="flex gap-1 rounded-lg border border-purple-600 bg-purple-950 text-purple-100 p-1 text-sm font-medium"
+        >
           <p
-            class="border-2 border-fuchsia-400 text-purple-100 place-self-center px-2 rounded-full"
+            class="outline outline-fuchsia-500 outline-1 text-purple-200 place-self-center px-2 rounded-full"
           >
             {{ .Count }}
           </p>
 
-          <p class="text-purple-100">{{ .GenreName }}</p>
+          <p class="place-self-center">{{ .GenreName }}</p>
         </div>
         {{end}}
       </div>
       <div class="flex justify-around items-center w-full">
         <div
-          class="p-3 w-3 h-3 rounded-full bg-primary flex justify-center items-center"
+          class="p-3 w-3 h-3 rounded-full flex justify-center items-center gap-1"
         >
-          <i class="fa fa-music"></i>
+          <i class="fa fa-fire text-red-600 align-baseline"></i>
           <p class="text-[.5rem]">{{ .Similarity }}</p>
         </div>
         <div
