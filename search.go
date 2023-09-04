@@ -11,15 +11,6 @@ func GetSearchHandler(c *fiber.Ctx) error {
 
 	q := c.Query("q")
 
-	// means that htmx triggered this request
-	if c.Get("Hx-Trigger-Name") != "q" {
-
-		return c.Render("search", fiber.Map{
-			"Title": "rcmndr",
-			"Query": q,
-		}, "layouts/main")
-	}
-
 	db, err := sql.Open("sqlite3", "./db.sqlite3")
 	if err != nil {
 		return err
@@ -103,11 +94,19 @@ GROUP BY g.id`, currentUserId)
 		usersMap[i].Similarity = fmt.Sprintf("%.1f", val*100) + "%"
 	}
 
-	return c.Render("search-result", fiber.Map{
-		"Title": "rcmndr",
+	if c.Get("Hx-Trigger-Name") == "q" {
+
+		return c.Render("search-result", fiber.Map{
+			"Query": q,
+			"Users": usersMap,
+		})
+	}
+
+	return c.Render("search", fiber.Map{
+		"Title": "Search - rcmndr",
 		"Query": q,
 		"Users": usersMap,
-	})
+	}, "layouts/main")
 }
 
 func cosineSimilarity(a []string, b []string) float64 {
