@@ -1,18 +1,17 @@
-<ul id="results" class="flex flex-col gap-4">
+<ul id="results" class="flex flex-col">
   {{range .Users}}
   <li
-    class="flex gap-2 justify-between items-center border border-purple-900 rounded p-2"
+    class="flex gap-2 justify-between items-center border border-purple-900 p-2"
   >
     <div class="flex flex-col gap-1.5 justify-around items-center">
       <div>
         <a href="/user/{{ .Nickname }}">{{ .Nickname }}</a>
-        <p class="text-[.5rem]">{{ .Similarity }}</p>
       </div>
       <div class="flex flex-wrap gap-2 justify-center items-center">
         {{range .Genres}}
         <div class="flex gap-1 rounded bg-purple-700 p-1 text-[.5rem]">
           <p
-            class="bg-fuchsia-600 text-purple-100 place-self-center px-2 rounded-full"
+            class="border-2 border-fuchsia-400 text-purple-100 place-self-center px-2 rounded-full"
           >
             {{ .Count }}
           </p>
@@ -21,11 +20,23 @@
         </div>
         {{end}}
       </div>
-
-      <div
-        class="p-3 w-3 h-3 rounded-full bg-primary flex justify-center items-center"
-      >
-        <i class="fa fa-heart text-black align-middle text-center"></i>
+      <div class="flex justify-around items-center w-full">
+        <div
+          class="p-3 w-3 h-3 rounded-full bg-primary flex justify-center items-center"
+        >
+          <i class="fa fa-music"></i>
+          <p class="text-[.5rem]">{{ .Similarity }}</p>
+        </div>
+        <div
+          class="p-3 w-3 h-3 rounded-full bg-primary flex justify-center items-center"
+        >
+          <i class="fa fa-eye text-black align-middle text-center"></i>
+        </div>
+        <div
+          class="p-3 w-3 h-3 rounded-full bg-primary flex justify-center items-center"
+        >
+          <i class="fa fa-heart text-black align-middle text-center"></i>
+        </div>
       </div>
     </div>
   </li>

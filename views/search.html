@@ -1,17 +1,21 @@
 <div id="page" class="flex flex-col gap-10">
-  <form action="/search" method="get">
+  <form
+    action="/search"
+    method="get"
+    class="flex flex-col gap-2 text-xs text-purple-200"
+  >
+    <label for="q">Search</label>
     <input
       type="search"
       name="q"
       value="{{ .Query }}"
-      class="text-black rounded"
       hx-get="/search"
       hx-target="#results"
       hx-trigger="change, keyup delay:200ms changed"
       hx-push-url="true"
       autocomplete="off"
+      autofocus
     />
-    <button type="submit"><i class="fa fa-search"></i></button>
   </form>
 
   <div id="results"></div>
