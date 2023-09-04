@@ -41,7 +41,7 @@ func GetAuthCallbackHanlder(c *fiber.Ctx) error {
 	if err := sess.Save(); err != nil {
 		return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
-	return c.Redirect("/profile")
+	return c.Redirect("/")
 }
 
 func LogoutHandler(c *fiber.Ctx) error {
@@ -53,7 +53,12 @@ func LogoutHandler(c *fiber.Ctx) error {
 	if err := sess.Destroy(); err != nil {
 		return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
-	return c.Redirect("/")
+
+	c.ClearCookie("session_id")
+
+	return c.Render("login", fiber.Map{
+		"Title": "Login - rcmndr",
+	}, "layouts/main")
 }
 
 func LoginHandler(c *fiber.Ctx) error {
