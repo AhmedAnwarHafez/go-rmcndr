@@ -19,16 +19,6 @@ func main() {
 	// Create a new engine
 	engine := html.New("./views", ".html")
 
-	engine.AddFunc("textbox", func(class string, placeholder template.HTML) template.HTML {
-		var buf bytes.Buffer
-		engine.Templates.ExecuteTemplate(&buf, "textbox", map[string]interface{}{
-			"Class":       class,
-			"Placeholder": placeholder,
-		})
-		log.Println(buf.String())
-		return template.HTML(buf.String())
-	})
-
 	// Pass the engine to the Views
 	app := fiber.New(fiber.Config{
 		Views: engine,
