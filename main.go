@@ -41,6 +41,7 @@ func main() {
 	app.Get("/profile", Protect, GetProfileHandler)
 	app.Get("/add-recommendation", Protect, GetAddRecommendation)
 	app.Post("/add-recommendation", Protect, PostAddRecommendation)
+	app.Get("/friend/:nickname", GetFriendDetails)
 	app.Get("/search", Protect, GetSearchHandler)
 	app.Get("/", Protect, GetSongsHandler)
 
