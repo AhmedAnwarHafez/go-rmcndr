@@ -39,7 +39,7 @@ func main() {
 	app.Get("/login", LoginHandler)
 	app.Get("/logout", LogoutHandler)
 	app.Get("/auth/github/callback", GetAuthCallbackHanlder)
-	app.Get("/profile", ProfileHandler)
+	app.Get("/profile", GetProfileHandler)
 	app.Get("/add-recommendation", GetAddRecommendation)
 	app.Post("/add-recommendation", PostAddRecommendation)
 	app.Get("/search", GetSearchHandler)

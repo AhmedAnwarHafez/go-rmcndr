@@ -23,6 +23,7 @@ type Recommendation struct {
 type User struct {
 	Id       int64
 	Nickname string
+	Bio      string
 	IsPublic bool
 	Songs    []Recommendation
 }
@@ -48,7 +49,7 @@ func main() {
 	}
 
 	// create users table
-	_, err = db.Exec("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, nickname TEXT, is_public BOOLEAN)")
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, nickname TEXT, bio TEXT, is_public BOOLEAN)")
 	if err != nil {
 		log.Fatal(err)
 		return
@@ -98,6 +99,7 @@ func main() {
 		// create a new user
 		u := User{
 			Nickname: fake.Person().Name(),
+			Bio:      fake.Lorem().Sentence(10),
 			IsPublic: true,
 		}
 
@@ -164,11 +166,12 @@ func main() {
 	var me = User{
 		Id:       7552088,
 		Nickname: "me",
+		Bio:      fake.Lorem().Sentence(10),
 		IsPublic: true,
 	}
 
 	// insert user into the database
-	_, err = db.Exec("INSERT INTO users (id, nickname, is_public) VALUES (?, ?, ?)", me.Id, me.Nickname, me.IsPublic)
+	_, err = db.Exec("INSERT INTO users (id, nickname, bio, is_public) VALUES (?, ?, ?, ?)", me.Id, me.Nickname, me.Bio, me.IsPublic)
 	if err != nil {
 		log.Fatal(err)
 		return

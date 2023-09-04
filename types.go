@@ -14,6 +14,7 @@ type User struct {
 	Id       string
 	Nickname string
 	IsPublic bool
+	Bio      string
 	Songs    []Song
 }
 
